@@ -17,3 +17,13 @@ for i=0,9 do
 		end
 	end)
 end
+
+
+-- Maximise window height
+hs.hotkey.bind({'ctrl', 'alt'}, 'z', function()
+	local win = hs.window.frontmostWindow()
+	local f = win:frame()
+
+	f.h = hs.screen.mainScreen():frame().h
+	win:setFrame(f)
+end)
