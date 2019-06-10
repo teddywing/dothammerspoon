@@ -1,6 +1,8 @@
 -- Enable command line tool (http://www.hammerspoon.org/docs/hs.ipc.html)
 require("hs.ipc")
 
+require('window')
+
 
 -- Shortcuts to focus tabs in Terminal
 terminal_app = hs.application.applicationsForBundleID('com.apple.Terminal')[1]
