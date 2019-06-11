@@ -130,8 +130,8 @@ window_mode:bind({}, 'l', window.right_med, nil, window.right_med)
 window_mode:bind({}, 'j', window.down_med,  nil, window.down_med)
 window_mode:bind({}, 'h', window.left_med,  nil, window.left_med)
 
-window_mode:bind({}, ']', nil, nil, function() hs.window.focusedWindow():moveOneScreenEast() end)
-window_mode:bind({}, '[', nil, nil, function() hs.window.focusedWindow():moveOneScreenWest() end)
+window_mode:bind({}, ']', function() hs.window.focusedWindow():moveOneScreenEast(true, false, 0) end)
+window_mode:bind({}, '[', function() hs.window.focusedWindow():moveOneScreenWest(true, false, 0) end)
 
 window_mode:bind({'shift'}, 'e', window.decrease_up,    nil, window.decrease_up)
 window_mode:bind({'shift'}, 'd', window.increase_down,  nil, window.increase_down)
