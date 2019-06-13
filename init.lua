@@ -29,3 +29,9 @@ hs.hotkey.bind({'ctrl', 'alt'}, 'z', function()
 	f.h = hs.screen.mainScreen():frame().h
 	win:setFrame(f)
 end)
+
+
+-- Shortcut to invert screen colours
+hs.hotkey.bind({}, 'f8', function()
+	hs.eventtap.keyStroke({'cmd', 'option', 'ctrl'}, '8')
+end)
