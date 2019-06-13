@@ -2,6 +2,7 @@
 require("hs.ipc")
 
 require('window')
+require('mouse')
 
 
 -- Shortcuts to focus tabs in Terminal
