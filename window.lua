@@ -115,6 +115,14 @@ function window.decrease_left_med()
 end
 
 
+function window.move_to_top()
+	local position = hs.window.focusedWindow():topLeft()
+	position.y = 0
+
+	hs.window.focusedWindow():setTopLeft(position)
+end
+
+
 window_mode = hs.hotkey.modal.new({'ctrl', 'option', 'shift'}, 'w', 'Window')
 window_mode:bind({'ctrl', 'option', 'shift'}, 'w', 'Window Off', function()
 	window_mode:exit()
@@ -129,6 +137,8 @@ window_mode:bind({}, 'k', window.up_med,    nil, window.up_med)
 window_mode:bind({}, 'l', window.right_med, nil, window.right_med)
 window_mode:bind({}, 'j', window.down_med,  nil, window.down_med)
 window_mode:bind({}, 'h', window.left_med,  nil, window.left_med)
+
+window_mode:bind({}, 'i', window.move_to_top,  nil, window.move_to_top)
 
 window_mode:bind({}, ']', function() hs.window.focusedWindow():moveOneScreenEast(true, false, 0) end)
 window_mode:bind({}, '[', function() hs.window.focusedWindow():moveOneScreenWest(true, false, 0) end)
