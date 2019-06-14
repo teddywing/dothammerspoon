@@ -40,6 +40,16 @@ function mouse.click()
 	-- TODO: key down is mouse down, key up is mouse up
 end
 
+function mouse.click_down()
+	local position = hs.mouse.getAbsolutePosition()
+	hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseDown, position):post()
+end
+
+function mouse.click_up()
+	local position = hs.mouse.getAbsolutePosition()
+	hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseUp, position):post()
+end
+
 function mouse.right(amount)
 	return function()
 		local position = hs.mouse.getRelativePosition()
@@ -89,7 +99,7 @@ mouse_mode:bind({}, 'pad1', mouse.bottom_left(100), nil, mouse.bottom_left(100))
 mouse_mode:bind({}, 'pad2', mouse.bottom(100), nil, mouse.bottom(100))
 mouse_mode:bind({}, 'pad3', mouse.bottom_right(100), nil, mouse.bottom_right(100))
 mouse_mode:bind({}, 'pad4', mouse.left(100), nil, mouse.left(100))
-mouse_mode:bind({}, 'pad5', mouse.click)
+mouse_mode:bind({}, 'pad5', mouse.click_down, mouse.click_up)
 mouse_mode:bind({}, 'pad6', mouse.right(100), nil, mouse.right(100))
 mouse_mode:bind({}, 'pad7', mouse.top_left(100), nil, mouse.top_left(100))
 mouse_mode:bind({}, 'pad8', mouse.top(100), nil, mouse.top(100))
