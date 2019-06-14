@@ -80,6 +80,11 @@ mouse_mode:bind({'ctrl', 'option', 'shift'}, 'm', 'Mouse Off', function()
 	mouse_mode:exit()
 end)
 
+mouse_mode = hs.hotkey.modal.new({}, 'padclear', 'Mouse')
+mouse_mode:bind({}, 'padclear', 'Mouse Off', function()
+	mouse_mode:exit()
+end)
+
 mouse_mode:bind({}, 'pad1', mouse.bottom_left(100), nil, mouse.bottom_left(100))
 mouse_mode:bind({}, 'pad2', mouse.bottom(100), nil, mouse.bottom(100))
 mouse_mode:bind({}, 'pad3', mouse.bottom_right(100), nil, mouse.bottom_right(100))
