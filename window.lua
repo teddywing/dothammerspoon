@@ -123,8 +123,8 @@ function window.move_to_top()
 end
 
 
-window_mode = hs.hotkey.modal.new({'ctrl', 'option', 'shift'}, 'w', 'Window')
-window_mode:bind({'ctrl', 'option', 'shift'}, 'w', 'Window Off', function()
+window_mode = hs.hotkey.modal.new({'ctrl', 'option'}, 'w', 'Window')
+window_mode:bind({'ctrl', 'option'}, 'w', 'Window Off', function()
 	window_mode:exit()
 end)
 
