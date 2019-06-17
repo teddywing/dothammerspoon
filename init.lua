@@ -17,8 +17,10 @@
 -- Enable command line tool (http://www.hammerspoon.org/docs/hs.ipc.html)
 require("hs.ipc")
 
-require('window')
 require('mouse')
+
+hs.loadSpoon('WindowMode')
+spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
 
 
 -- Shortcuts to focus tabs in Terminal
