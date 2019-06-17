@@ -1,0 +1,3 @@
+[submodule "Spoons/WindowMode.spoon"]
+	path = Spoons/WindowMode.spoon
+	url = https://github.com/teddywing/WindowMode.spoon.git
