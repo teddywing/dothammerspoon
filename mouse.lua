@@ -101,11 +101,6 @@ function mouse.top_right(amount)
 end
 
 
-mouse_mode = hs.hotkey.modal.new({'ctrl', 'option', 'shift'}, 'm', 'Mouse')
-mouse_mode:bind({'ctrl', 'option', 'shift'}, 'm', 'Mouse Off', function()
-	mouse_mode:exit()
-end)
-
 mouse_mode = hs.hotkey.modal.new({}, 'padclear', 'Mouse')
 mouse_mode:bind({}, 'padclear', 'Mouse Off', function()
 	mouse_mode:exit()
