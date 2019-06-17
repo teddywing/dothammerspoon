@@ -17,6 +17,7 @@
 -- Enable command line tool (http://www.hammerspoon.org/docs/hs.ipc.html)
 require("hs.ipc")
 
+require('application_switch')
 require('mouse')
 
 hs.loadSpoon('WindowMode')
