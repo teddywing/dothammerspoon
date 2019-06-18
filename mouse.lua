@@ -100,6 +100,34 @@ function mouse.top_right(amount)
 	end
 end
 
+function mouse.scroll(offsets)
+	hs.eventtap.event.newScrollEvent(offsets, {}, 'pixel'):post()
+end
+
+function mouse.scroll_down(amount)
+	return function()
+		mouse.scroll({0, -amount})
+	end
+end
+
+function mouse.scroll_left(amount)
+	return function()
+		mouse.scroll({amount, 0})
+	end
+end
+
+function mouse.scroll_right(amount)
+	return function()
+		mouse.scroll({-amount, 0})
+	end
+end
+
+function mouse.scroll_up(amount)
+	return function()
+		mouse.scroll({0, amount})
+	end
+end
+
 
 mouse_mode = hs.hotkey.modal.new({}, 'padclear', 'Mouse')
 mouse_mode:bind({}, 'padclear', 'Mouse Off', function()
@@ -135,3 +163,15 @@ mouse_mode:bind({'option'}, 'pad6', mouse.right(1), nil, mouse.right(1))
 mouse_mode:bind({'option'}, 'pad7', mouse.top_left(1), nil, mouse.top_left(1))
 mouse_mode:bind({'option'}, 'pad8', mouse.top(1), nil, mouse.top(1))
 mouse_mode:bind({'option'}, 'pad9', mouse.top_right(1), nil, mouse.top_right(1))
+
+
+-- TODO: Way to activate scroll mode while mouse mode is active
+scroll_mode = hs.hotkey.modal.new({}, 'f14', 'Scroll')
+scroll_mode:bind({}, 'f14', 'Scroll Off', function()
+	scroll_mode:exit()
+end)
+
+scroll_mode:bind({}, 'pad2', mouse.scroll_down(100), nil, mouse.scroll_down(100))
+scroll_mode:bind({}, 'pad4', mouse.scroll_left(100), nil, mouse.scroll_left(100))
+scroll_mode:bind({}, 'pad6', mouse.scroll_right(100), nil, mouse.scroll_right(100))
+scroll_mode:bind({}, 'pad8', mouse.scroll_up(100), nil, mouse.scroll_up(100))
