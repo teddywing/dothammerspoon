@@ -19,54 +19,10 @@ require("hs.ipc")
 
 require('application_switch')
 require('mouse')
+require('terminal_tab_hotkeys')
 
 hs.loadSpoon('WindowMode')
 spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
-
-
--- Shortcuts to focus tabs in Terminal
-terminal_app = hs.application.applicationsForBundleID('com.apple.Terminal')[1]
-
-terminal_tab_hotkeys = {}
-
-for i=0,9 do
-	local key = tostring(i)
-
-	terminal_tab_hotkeys[i] = hs.hotkey.bind({"cmd", "alt"}, key, function()
-		if terminal_app:isFrontmost() then
-			local tab_index = i
-			if i == 0 then
-				tab_index = 10
-			end
-
-			hs.window.frontmostWindow():focusTab(tab_index)
-		end
-	end)
-end
-
-function terminal_tab_hotkeys:enable()
-	for _, v in pairs(terminal_tab_hotkeys) do
-		v:enable()
-	end
-end
-
-function terminal_tab_hotkeys:disable()
-	for _, v in pairs(terminal_tab_hotkeys) do
-		v:disable()
-	end
-end
-
-application_watcher = hs.application.watcher.new(function(app_name, event_type, app)
-	if app ~= nil and app_name == 'Terminal' then
-		if event_type == hs.application.watcher.activated then
-			terminal_tab_hotkeys:enable()
-		elseif event_type == hs.application.watcher.deactivated then
-			terminal_tab_hotkeys:disable()
-		end
-	end
-end)
-
-application_watcher:start()
 
 
 -- Maximise window height
