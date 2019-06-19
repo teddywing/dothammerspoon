@@ -34,13 +34,13 @@ for i=0,9 do
 	end)
 end
 
-function terminal_tab_hotkeys:enable()
+function terminal_tab_hotkeys_enable()
 	for _, v in pairs(terminal_tab_hotkeys) do
 		v:enable()
 	end
 end
 
-function terminal_tab_hotkeys:disable()
+function terminal_tab_hotkeys_disable()
 	for _, v in pairs(terminal_tab_hotkeys) do
 		v:disable()
 	end
@@ -49,9 +49,9 @@ end
 application_watcher = hs.application.watcher.new(function(app_name, event_type, app)
 	if app ~= nil and app_name == 'Terminal' then
 		if event_type == hs.application.watcher.activated then
-			terminal_tab_hotkeys:enable()
+			terminal_tab_hotkeys_enable()
 		elseif event_type == hs.application.watcher.deactivated then
-			terminal_tab_hotkeys:disable()
+			terminal_tab_hotkeys_disable()
 		end
 	end
 end)
