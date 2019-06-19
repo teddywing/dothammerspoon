@@ -1,20 +1,36 @@
 local activateAllWindows = true
 
-hs.hotkey.bind({}, 'f1', function()
+application_switch = {}
+
+application_switch['f1'] = hs.hotkey.bind({}, 'f1', function()
 	hs.application.find('com.apple.Terminal'):activate()
 end)
 
-hs.hotkey.bind({}, 'f2', function()
+application_switch['f2'] = hs.hotkey.bind({}, 'f2', function()
 	hs.application.find('org.mozilla.nightly'):activate(activateAllWindows)
 end)
 
-hs.hotkey.bind({}, 'f3', function()
+application_switch['f3'] = hs.hotkey.bind({}, 'f3', function()
 	hs.application.find('com.google.Chrome'):activate(activateAllWindows)
 end)
 
-hs.hotkey.bind({}, 'f4', function()
+application_switch['f4'] = hs.hotkey.bind({}, 'f4', function()
 	hs.application.find('com.microsoft.rdc.osx.beta'):activate()
 end)
+
+-- Rebind Shift-F[n] to F[n]
+for _, key in ipairs({'f1', 'f2', 'f3', 'f4'}) do
+	hs.hotkey.bind({'shift'}, key, function()
+		application_switch[key]:disable()
+
+		hs.timer.doAfter(0.05, function()
+			hs.eventtap.keyStroke({}, key)
+
+			application_switch[key]:enable()
+		end)
+	end)
+end
+
 
 -- Mode to activate lesser-used applications
 application_switch_mode = hs.hotkey.modal.new({}, 'f13')
