@@ -18,8 +18,9 @@ end)
 
 -- Mode to activate lesser-used applications
 application_switch_mode = hs.hotkey.modal.new({}, 'f13')
-
---TODO: Deactivate with F13
+application_switch_mode:bind({}, 'f13', function()
+	application_switch_mode:exit()
+end)
 
 application_switch_mode:bind({}, 'q', function()
 	hs.application.find('org.libreoffice.script'):activate(activateAllWindows)
