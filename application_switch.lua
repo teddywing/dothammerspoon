@@ -38,6 +38,3 @@ application_switch_mode:bind({}, 'f', function()
 
 	application_switch_mode:exit()
 end)
-
--- TODO: Don't do that with a mode, just a list of keys, as the mode sometimes
--- doesn't activate quick enough
