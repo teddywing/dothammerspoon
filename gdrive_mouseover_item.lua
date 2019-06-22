@@ -46,6 +46,8 @@ end
 
 function gdrive_mouseover_item_run_and_exit(f)
 	return function()
+		hs.application.find('com.google.Chrome'):activate()
+
 		f()
 		gdrive_mouseover_item_open()
 
