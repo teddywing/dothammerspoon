@@ -40,9 +40,14 @@ function gdrive_mouseover_item_select(id)
 	hs.eventtap.leftClick(zoom_position)
 end
 
+function gdrive_mouseover_item_open()
+	hs.eventtap.keyStroke({'ctrl', 'option', 'shift'}, 'o')
+end
+
 function gdrive_mouseover_item_run_and_exit(f)
 	return function()
 		f()
+		gdrive_mouseover_item_open()
 
 		gdrive_mouseover_item_mode:exit()
 	end
