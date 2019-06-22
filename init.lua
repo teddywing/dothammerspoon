@@ -18,6 +18,7 @@
 require("hs.ipc")
 
 require('application_switch')
+require('gdrive_mouseover_item')
 require('mouse')
 require('terminal_tab_hotkeys')
 
