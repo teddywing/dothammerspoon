@@ -50,6 +50,12 @@ application_switch_mode:bind({}, 'w', function()
 	application_switch_mode:exit()
 end)
 
+application_switch_mode:bind({}, 'x', function()
+	hs.application.find('com.microsoft.Excel'):activate(activateAllWindows)
+
+	application_switch_mode:exit()
+end)
+
 application_switch_mode:bind({}, 'f', function()
 	hs.application.find('com.googlecode.iterm2'):activate(activateAllWindows)
 
