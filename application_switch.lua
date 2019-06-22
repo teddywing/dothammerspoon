@@ -38,6 +38,10 @@ application_switch_mode:bind({}, 'f13', function()
 	application_switch_mode:exit()
 end)
 
+application_switch_mode:bind({}, 'escape', function()
+	application_switch_mode:exit()
+end)
+
 application_switch_mode:bind({}, 'q', function()
 	hs.application.find('org.libreoffice.script'):activate(activateAllWindows)
 
