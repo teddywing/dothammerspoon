@@ -1,3 +1,6 @@
+-- Opens a file in Google Drive by clicking a row by ID and sending a keyboard
+-- shortcut to a user script to open the file.
+
 -- Copyright (c) 2019  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
