@@ -61,3 +61,9 @@ application_switch_mode:bind({}, 'f', function()
 
 	application_switch_mode:exit()
 end)
+
+application_switch_mode:bind({}, 'v', function()
+	hs.application.find('com.apple.Preview'):activate(activateAllWindows)
+
+	application_switch_mode:exit()
+end)
