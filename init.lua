@@ -27,16 +27,6 @@ hs.loadSpoon('WindowMode')
 spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
 
 
--- Maximise window height
-hs.hotkey.bind({'ctrl', 'alt'}, 'z', function()
-	local win = hs.window.frontmostWindow()
-	local f = win:frame()
-
-	f.h = hs.screen.mainScreen():frame().h
-	win:setFrame(f)
-end)
-
-
 -- Shortcut to invert screen colours
 hs.hotkey.bind({}, 'f8', function()
 	hs.eventtap.keyStroke({'cmd', 'option', 'ctrl'}, '8')
