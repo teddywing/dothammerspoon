@@ -54,6 +54,12 @@ application_switch_mode:bind({}, 'w', function()
 	application_switch_mode:exit()
 end)
 
+application_switch_mode:bind({}, 'e', function()
+	hs.application.find('com.apple.TextEdit'):activate(activateAllWindows)
+
+	application_switch_mode:exit()
+end)
+
 application_switch_mode:bind({}, 'x', function()
 	hs.application.find('com.microsoft.Excel'):activate(activateAllWindows)
 
