@@ -31,3 +31,12 @@ spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
 hs.hotkey.bind({}, 'f8', function()
 	hs.eventtap.keyStroke({'cmd', 'option', 'ctrl'}, '8')
 end)
+
+-- Temporary browser extension reload mapping
+hs.hotkey.bind({}, 'f5', function()
+	local position = hs.window.frontmostWindow():zoomButtonRect()
+	position.x = position.x + 925
+	position.y = position.y + 45
+
+	hs.eventtap.leftClick(position)
+end)
