@@ -34,9 +34,15 @@ end)
 
 -- Temporary browser extension reload mapping
 hs.hotkey.bind({}, 'f5', function()
-	local position = hs.window.frontmostWindow():zoomButtonRect()
-	position.x = position.x + 925
-	position.y = position.y + 45
+	hs.eventtap.keyStroke({'ctrl', 'option'}, 'u')
+	hs.timer.doAfter(0.5, function()
+		hs.eventtap.keyStroke({}, 'r')
+	end)
 
-	hs.eventtap.leftClick(position)
+	hs.timer.doAfter(10, function()
+		hs.eventtap.keyStroke({'ctrl', 'option'}, 'o')
+		hs.timer.doAfter(0.5, function()
+			hs.eventtap.keyStroke({}, '0')
+		end)
+	end)
 end)
