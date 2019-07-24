@@ -22,6 +22,7 @@ require('gdrive_mouseover_item')
 require('mouse')
 require('terminal_tab_hotkeys')
 require('ufo')
+require('window_layout')
 
 hs.loadSpoon('WindowMode')
 spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
