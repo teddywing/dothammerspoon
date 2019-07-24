@@ -61,6 +61,16 @@ function mouse.click_down()
 	hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseDown, position):post()
 end
 
+-- TODO: Doesn't work
+function mouse.option_click_down()
+	local position = hs.mouse.getAbsolutePosition()
+	hs.eventtap.event.newMouseEvent(
+		hs.eventtap.event.types.leftMouseDown,
+		position,
+		{'option'}
+	):post()
+end
+
 function mouse.click_up()
 	local position = hs.mouse.getAbsolutePosition()
 	hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseUp, position):post()
@@ -139,6 +149,7 @@ mouse_mode:bind({}, 'pad2', mouse.bottom(100), nil, mouse.bottom(100))
 mouse_mode:bind({}, 'pad3', mouse.bottom_right(100), nil, mouse.bottom_right(100))
 mouse_mode:bind({}, 'pad4', mouse.left(100), nil, mouse.left(100))
 mouse_mode:bind({}, 'pad5', mouse.click_down, mouse.click_up)
+mouse_mode:bind({'option'}, 'pad5', mouse.option_click_down, mouse.click_up)
 mouse_mode:bind({}, 'pad6', mouse.right(100), nil, mouse.right(100))
 mouse_mode:bind({}, 'pad7', mouse.top_left(100), nil, mouse.top_left(100))
 mouse_mode:bind({}, 'pad8', mouse.top(100), nil, mouse.top(100))
