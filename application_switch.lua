@@ -18,8 +18,13 @@ application_switch['f4'] = hs.hotkey.bind({}, 'f4', function()
 	hs.application.find('com.microsoft.rdc.osx.beta'):activate()
 end)
 
+application_switch['f6'] = hs.hotkey.bind({}, 'f6', function()
+	hs.application.find('com.googlecode.iterm2'):activate(activateAllWindows)
+end)
+
+
 -- Rebind Shift-F[n] to F[n]
-for _, key in ipairs({'f1', 'f2', 'f3', 'f4'}) do
+for _, key in ipairs({'f1', 'f2', 'f3', 'f4', 'f6'}) do
 	hs.hotkey.bind({'shift'}, key, function()
 		application_switch[key]:disable()
 
