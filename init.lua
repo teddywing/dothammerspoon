@@ -32,18 +32,3 @@ spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
 hs.hotkey.bind({}, 'f8', function()
 	hs.eventtap.keyStroke({'cmd', 'option', 'ctrl'}, '8')
 end)
-
--- Temporary browser extension reload mapping
-hs.hotkey.bind({}, 'f5', function()
-	hs.eventtap.keyStroke({'ctrl', 'option'}, 'u')
-	hs.timer.doAfter(0.5, function()
-		hs.eventtap.keyStroke({}, 'r')
-	end)
-
-	hs.timer.doAfter(10, function()
-		hs.eventtap.keyStroke({'ctrl', 'option'}, 'o')
-		hs.timer.doAfter(0.5, function()
-			hs.eventtap.keyStroke({}, '0')
-		end)
-	end)
-end)
