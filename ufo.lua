@@ -18,3 +18,18 @@ ufo_mode:bind({}, 'r', function()
 
 	ufo_mode:exit()
 end)
+
+-- Edit, close, and save an MS Word document
+ufo_mode:bind({}, 'w', function()
+	math.randomseed(os.time())
+	local number = math.random(0, 9)
+
+	hs.eventtap.keyStroke({}, 'forwarddelete')
+	hs.eventtap.keyStroke({}, tostring(number))
+	hs.eventtap.keyStroke({'command'}, 'w')
+	hs.timer.doAfter(0.05, function()
+		hs.eventtap.keyStroke({}, 'return')
+	end)
+
+	ufo_mode:exit()
+end)
