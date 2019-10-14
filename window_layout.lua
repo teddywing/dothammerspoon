@@ -14,22 +14,40 @@
 -- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
--- Do this when external monitor is connected
--- https://www.hammerspoon.org/docs/hs.screen.watcher.html
--- hs.screen.primaryScreen():name() == 'G247HL'
-local function iterm2()
-	for _, window in ipairs(hs.application.find('com.googlecode.iterm2'):allWindows()) do
-		if window:title():match('^2%. ') then
-			window:setFrame(hs.geometry.rect(-1253.0,23.0,793.0,873.0))
-			return
+all_window_filter = hs.window.filter.new():setOverrideFilter({ visible = true })
+window_positions = {}
+
+local function window_positions_save(window, _app_name, event_type)
+	local screen = hs.screen.primaryScreen():id()
+
+	if event_type == hs.window.filter.windowsChanged then
+		window_positions[screen] = {}
+
+		for _, window in ipairs(all_window_filter:getWindows()) do
+			window_positions[screen][window:id()] = window:frame()
 		end
+	elseif event_type == hs.window.filter.windowMoved then
+		window_positions[screen][window:id()] = window:frame()
 	end
 end
 
+local function window_positions_restore()
+	local screen = hs.screen.primaryScreen():id()
+
+	for id, frame in pairs(window_positions[screen]) do
+		hs.window.get(id):setFrame(frame)
+	end
+end
+
+-- Save window positions on load
+window_positions_save(nil, nil, hs.window.filter.windowsChanged)
+
+all_window_filter
+	:subscribe(hs.window.filter.windowMoved, window_positions_save)
+	:subscribe(hs.window.filter.windowsChanged, window_positions_save)
+
 
 screen_watcher = hs.screen.watcher.new(function()
-	if hs.screen.primaryScreen():name() == 'G247HL' then
-		iterm2()
-	end
+	window_positions_restore()
 end)
 screen_watcher:start()
