@@ -16,6 +16,7 @@
 
 all_window_filter = hs.window.filter.new():setOverrideFilter({ visible = true })
 window_positions = {}
+setmetatable(window_positions, {__index = function() return {} end})
 
 local function window_positions_save(window, _app_name, event_type)
 	local screen = hs.screen.primaryScreen():id()
