@@ -22,7 +22,15 @@
 -- Default brightness to 50%.
 cbb_brightness = 50
 
+half_hour = 60 * 30
+
 cbb_logger = hs.logger.new('catalina_brightness_bullshit', 'debug')
+
+hs.timer.doEvery(half_hour, function()
+	cbb_brightness = hs.brightness.get()
+
+	cbb_logger:d('saved brightness: ', cbb_brightness)
+end)
 
 cbb_wake_watcher = hs.caffeinate.watcher.new(function(event_type)
 	-- Only run if the external monitor is connected.
@@ -32,12 +40,7 @@ cbb_wake_watcher = hs.caffeinate.watcher.new(function(event_type)
 		return
 	end
 
-	if event_type == hs.caffeinate.watcher.screensDidLock
-			or event_type == hs.caffeinate.watcher.screensDidSleep then
-		cbb_brightness = hs.brightness.get()
-
-		cbb_logger:d('saved brightness: ', cbb_brightness)
-	elseif event_type == hs.caffeinate.watcher.screensDidUnlock
+	if event_type == hs.caffeinate.watcher.screensDidUnlock
 			or event_type == hs.caffeinate.watcher.screensDidWake then
 		hs.brightness.set(cbb_brightness)
 
