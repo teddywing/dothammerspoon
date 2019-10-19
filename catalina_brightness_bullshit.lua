@@ -19,8 +19,7 @@
 -- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
--- Default brightness to 50%.
-cbb_brightness = 50
+cbb_brightness = hs.brightness.get()
 
 half_hour = 60 * 30
 
