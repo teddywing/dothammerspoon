@@ -32,4 +32,11 @@ spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
 -- Shortcut to invert screen colours
 hs.hotkey.bind({}, 'f8', function()
 	hs.eventtap.keyStroke({'cmd', 'option', 'ctrl'}, '8')
+
+	-- Counteract a Catalina bug where sometimes inverting screen colours with
+	-- an external monitor connected makes the internal monitor's brightness
+	-- change to 100%.
+	if hs.screen.primaryScreen():name() ~= 'G247HL' then
+		cbb_brightness_restore()
+	end
 end)

@@ -25,6 +25,12 @@ half_hour = 60 * 30
 
 cbb_logger = hs.logger.new('catalina_brightness_bullshit', 'debug')
 
+function cbb_brightness_restore()
+	hs.brightness.set(cbb_brightness)
+
+	cbb_logger:d('restored brightness: ', cbb_brightness)
+end
+
 hs.timer.doEvery(half_hour, function()
 	cbb_brightness = hs.brightness.get()
 
@@ -41,9 +47,7 @@ cbb_wake_watcher = hs.caffeinate.watcher.new(function(event_type)
 
 	if event_type == hs.caffeinate.watcher.screensDidUnlock
 			or event_type == hs.caffeinate.watcher.screensDidWake then
-		hs.brightness.set(cbb_brightness)
-
-		cbb_logger:d('restored brightness: ', cbb_brightness)
+		cbb_brightness_restore()
 	end
 end)
 cbb_wake_watcher:start()
