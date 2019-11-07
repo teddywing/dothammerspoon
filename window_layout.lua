@@ -36,7 +36,11 @@ local function window_positions_restore()
 	local screen = hs.screen.primaryScreen():id()
 
 	for id, frame in pairs(window_positions[screen]) do
-		hs.window.get(id):setFrame(frame)
+		local window = hs.window.get(id)
+
+		if window then
+			window:setFrame(frame)
+		end
 	end
 end
 
