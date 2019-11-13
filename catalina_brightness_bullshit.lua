@@ -45,8 +45,7 @@ cbb_wake_watcher = hs.caffeinate.watcher.new(function(event_type)
 		return
 	end
 
-	if event_type == hs.caffeinate.watcher.screensDidUnlock
-			or event_type == hs.caffeinate.watcher.screensDidWake then
+	if event_type == hs.caffeinate.watcher.screensDidUnlock then
 		cbb_brightness_restore()
 	end
 end)
