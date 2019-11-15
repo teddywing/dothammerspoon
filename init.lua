@@ -36,7 +36,7 @@ hs.hotkey.bind({}, 'f8', function()
 	-- Counteract a Catalina bug where sometimes inverting screen colours with
 	-- an external monitor connected makes the internal monitor's brightness
 	-- change to 100%.
-	if hs.screen.primaryScreen():name() ~= 'G247HL' then
+	if hs.screen.primaryScreen():name() == 'G247HL' then
 		cbb_brightness_restore()
 	end
 end)
