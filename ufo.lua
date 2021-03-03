@@ -1,4 +1,4 @@
--- Copyright (c) 2019  Teddy Wing
+-- Copyright (c) 2019, 2021  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -12,6 +12,9 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+logger = hs.logger.new('ufo', 'debug')
 
 
 ufo_mode = hs.hotkey.modal.new({'ctrl', 'option'}, 'u', 'UFO')
@@ -48,4 +51,12 @@ ufo_mode:bind({}, 'w', function()
 	end)
 
 	ufo_mode:exit()
+end)
+
+
+-- Shortcut to reload the UFO extension using Extreload
+hs.hotkey.bind({}, 'f12', function()
+	local output, status, type, rc = hs.execute('ufo-reload-extension', true)
+
+	logger:d('reloaded UFO: ', output, status, type, rc)
 end)
