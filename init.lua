@@ -1,4 +1,4 @@
--- Copyright (c) 2019  Teddy Wing
+-- Copyright (c) 2019, 2021  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
