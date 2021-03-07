@@ -19,7 +19,6 @@ require("hs.ipc")
 
 require('application_switch')
 require('catalina_brightness_bullshit')
-require('catalina_invert_screen_bullshit')
 require('gdrive_mouseover_item')
 require('mouse')
 require('terminal_tab_hotkeys')
