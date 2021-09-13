@@ -1,0 +1,31 @@
+-- Idea: lock the screen automatically when ambient brightness shifts if it changes enough when I walk away, also only do this if the right external monitor is connected.
+-- > hs.brightness.ambient()
+-- 2019-07-24 11:25:15: -- Loading extension: brightness
+-- 1257
+--
+-- > hs.brightness.ambient()
+-- 1257
+--
+-- > hs.brightness.ambient()
+-- 1257
+--> hs.brightness.ambient()
+-- 1006
+--
+-- > hs.brightness.ambient()
+-- 1006
+--
+-- > hs.brightness.ambient()
+-- 1006
+--
+-- > os.execute('sleep 2')
+-- true	exit	0
+--
+-- > os.execute('sleep 2'); print('test')
+-- 2019-07-24 11:33:46: test
+--
+--
+-- > os.execute('sleep 2'); hs.brightness.ambient()
+--
+--
+-- > os.execute('sleep 2'); print(hs.brightness.ambient())
+-- 2019-07-24 11:34:20: 1175
