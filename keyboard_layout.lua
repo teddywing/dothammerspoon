@@ -1,4 +1,4 @@
--- Copyright (c) 2019, 2021  Teddy Wing
+-- Copyright (c) 2021  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,17 +14,22 @@
 -- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
--- Enable command line tool (http://www.hammerspoon.org/docs/hs.ipc.html)
-require("hs.ipc")
+-- Change keyboard layouts depending on presence of external keyboard.
 
-require('application_switch')
-require('catalina_brightness_bullshit')
-require('gdrive_mouseover_item')
-require('keyboard_layout')
-require('mouse')
-require('terminal_tab_hotkeys')
-require('ufo')
-require('window_layout')
 
-hs.loadSpoon('WindowMode')
-spoon.WindowMode:bindHotkeys({ mode = {{'ctrl', 'option'}, 'w'} })
+keyboard_usb_watcher = hs.usb.watcher.new(function(event)
+	if event['productName'] ~= 'iMate, USB To ADB Adaptor'
+		and event['vendorID'] ~= 1917
+		and event['productID'] ~= 1029
+	then
+		return
+	end
+
+	if event['eventType'] == 'added' then
+		hs.keycodes.setLayout('U.S.')
+	elseif event['eventType'] == 'removed' then
+		hs.keycodes.setLayout('QWAZERTY2')
+	end
+end)
+
+keyboard_usb_watcher:start()
