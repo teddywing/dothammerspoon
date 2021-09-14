@@ -19,8 +19,8 @@
 
 keyboard_usb_watcher = hs.usb.watcher.new(function(event)
 	if event['productName'] ~= 'iMate, USB To ADB Adaptor'
-		and event['vendorID'] ~= 1917
-		and event['productID'] ~= 1029
+		or event['vendorID'] ~= 1917
+		or event['productID'] ~= 1029
 	then
 		return
 	end
