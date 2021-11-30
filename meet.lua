@@ -14,7 +14,7 @@
 -- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-meet_csrf = 'tRuEptc89Uu 1UdpeOl1SZWW8QjjVSj8cu9kv7di68YDGZH83gKdC3H725f xIo4MqFacxqInARWtTkhcmOWDLNL5bti6d22ZwqF'
+meet_csrfish = 'tRuEptc89Uu 1UdpeOl1SZWW8QjjVSj8cu9kv7di68YDGZH83gKdC3H725f xIo4MqFacxqInARWtTkhcmOWDLNL5bti6d22ZwqF'
 
 meet_server = hs.httpserver.new(false, false)
 meet_server:setInterface('loopback')
@@ -24,12 +24,17 @@ meet_server:setCallback(function(method, path, headers, body)
 	response_headers['Access-Control-Allow-Origin'] = 'https://meet.google.com'
 	response_headers['Vary'] = 'Origin'
 
-	if headers['HS-Meet'] ~= meet_csrf then
-		return '', 403, response_headers
-	end
-
 	if method == 'POST' then
-		if path == '/volume-meet' then
+		url_parts = hs.http.urlParts(path)
+
+		if not url_parts['queryItems']
+			or not url_parts['queryItems'][1]
+			or url_parts['queryItems'][1]['csrf'] ~= meet_csrfish
+		then
+			return '', 403, response_headers
+		end
+
+		if url_parts['path'] == '/volume-meet' then
 			wasSet = hs.audiodevice.defaultOutputDevice():setOutputVolume(38)
 
 			if not wasSet then
