@@ -8,6 +8,7 @@ mouse movement, and more.
 ## Install
 
 	$ git clone https://github.com/teddywing/dothammerspoon.git $HOME/.hammerspoon
+	$ git submodule init && git submodule update
 
 
 ## License
