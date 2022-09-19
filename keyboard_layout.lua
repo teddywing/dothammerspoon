@@ -25,6 +25,14 @@ keyboard_usb_watcher = hs.usb.watcher.new(function(event)
 		return
 	end
 
+	local product_name_contains_word_keyboard = string.find(
+		string.lower(event['productName']),
+		"keyboard"
+	)
+	if not product_name_contains_word_keyboard then
+		return
+	end
+
 	if event['eventType'] == 'added' then
 		hs.keycodes.setLayout('U.S.')
 	elseif event['eventType'] == 'removed' then
