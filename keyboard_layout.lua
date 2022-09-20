@@ -17,19 +17,25 @@
 -- Change keyboard layouts depending on presence of external keyboard.
 
 
-keyboard_usb_watcher = hs.usb.watcher.new(function(event)
-	if event['productName'] ~= 'iMate, USB To ADB Adaptor'
-		or event['vendorID'] ~= 1917
-		or event['productID'] ~= 1029
-	then
-		return
-	end
+local function is_imate(event)
+	return event['productName'] == 'iMate, USB To ADB Adaptor'
+		and event['vendorID'] == 1917
+		and event['productID'] == 1029
+end
 
+local function is_generic_keyboard(event)
 	local product_name_contains_word_keyboard = string.find(
 		string.lower(event['productName']),
 		"keyboard"
 	)
-	if not product_name_contains_word_keyboard then
+
+	return product_name_contains_word_keyboard
+end
+
+keyboard_usb_watcher = hs.usb.watcher.new(function(event)
+	if not is_imate(event)
+		and not is_generic_keyboard(event)
+	then
 		return
 	end
 
