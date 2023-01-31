@@ -23,6 +23,12 @@ local function is_imate(event)
 		and event['productID'] == 1029
 end
 
+local function is_keychron(event)
+	return event['productName'] == 'Keychron C2'
+		and event['vendorID'] == 1452
+		and event['productID'] == 591
+end
+
 local function is_generic_keyboard(event)
 	local product_name_contains_word_keyboard = string.find(
 		string.lower(event['productName']),
@@ -34,6 +40,7 @@ end
 
 keyboard_usb_watcher = hs.usb.watcher.new(function(event)
 	if not is_imate(event)
+		and not is_keychron(event)
 		and not is_generic_keyboard(event)
 	then
 		return
