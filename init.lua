@@ -1,4 +1,4 @@
--- Copyright (c) 2019, 2021  Teddy Wing
+-- Copyright (c) 2019, 2021, 2023  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ require('application_switch')
 require('catalina_brightness_bullshit')
 require('gdrive_mouseover_item')
 require('keyboard_layout')
+require('keyboard_layout_select')
 require('meet')
 require('mouse')
 require('terminal_tab_hotkeys')
