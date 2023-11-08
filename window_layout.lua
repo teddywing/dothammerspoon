@@ -1,4 +1,4 @@
--- Copyright (c) 2019  Teddy Wing
+-- Copyright (c) 2019, 2022  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,17 +13,20 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+window_layout_logger = hs.logger.new('window_layout', 'debug')
+
 
 all_window_filter = hs.window.filter.new():setOverrideFilter({ visible = true })
 window_positions = {}
 setmetatable(window_positions, {__index = function() return {} end})
 
-local function window_positions_save(window, _app_name, event_type)
+function window_positions_save(window, _app_name, event_type)
 	local screen = hs.screen.primaryScreen():id()
 
 	if event_type == hs.window.filter.windowsChanged then
 		window_positions[screen] = {}
 
+		window_layout_logger:d(hs.inspect(all_window_filter:getWindows()))
 		for _, window in ipairs(all_window_filter:getWindows()) do
 			window_positions[screen][window:id()] = window:frame()
 		end
