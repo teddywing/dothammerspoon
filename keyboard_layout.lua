@@ -1,4 +1,4 @@
--- Copyright (c) 2021–2022  Teddy Wing
+-- Copyright (c) 2021–2024  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -29,6 +29,11 @@ local function is_keychron(event)
 		and event['productID'] == 591
 end
 
+local function is_kyria(event)
+	return event['vendorID'] == 36125
+		and event['productID'] == 40349
+end
+
 local function is_generic_keyboard(event)
 	local product_name_contains_word_keyboard = string.find(
 		string.lower(event['productName']),
@@ -41,6 +46,7 @@ end
 keyboard_usb_watcher = hs.usb.watcher.new(function(event)
 	if not is_imate(event)
 		and not is_keychron(event)
+		and not is_kyria(event)
 		and not is_generic_keyboard(event)
 	then
 		return
