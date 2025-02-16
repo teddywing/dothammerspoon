@@ -1,4 +1,4 @@
--- Copyright (c) 2019  Teddy Wing
+-- Copyright (c) 2019, 2025  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -38,9 +38,13 @@ application_switch['f5'] = hs.hotkey.bind({}, 'f5', function()
 	hs.application.find('com.googlecode.iterm2'):activate(activateAllWindows)
 end)
 
+application_switch['f6'] = hs.hotkey.bind({}, 'f6', function()
+	hs.application.find('com.apple.iphonesimulator'):activate(activateAllWindows)
+end)
+
 
 -- Rebind Shift-F[n] to F[n]
-for _, key in ipairs({'f1', 'f2', 'f3', 'f4', 'f5'}) do
+for _, key in ipairs({'f1', 'f2', 'f3', 'f4', 'f5', 'f6'}) do
 	hs.hotkey.bind({'shift'}, key, function()
 		application_switch[key]:disable()
 
