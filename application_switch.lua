@@ -31,7 +31,12 @@ application_switch['f3'] = hs.hotkey.bind({}, 'f3', function()
 end)
 
 application_switch['f4'] = hs.hotkey.bind({}, 'f4', function()
-	hs.application.find('com.microsoft.rdc.osx.beta'):activate()
+	local ms_remote_desktop = hs.application.find('com.microsoft.rdc.osx.beta')
+	if ms_remote_desktop then
+		ms_remote_desktop:activate()
+	else
+		hs.application.find('com.apple.iphonesimulator'):activate(activateAllWindows)
+	end
 end)
 
 application_switch['f5'] = hs.hotkey.bind({}, 'f5', function()
