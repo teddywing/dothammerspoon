@@ -44,7 +44,7 @@ application_switch['f5'] = hs.hotkey.bind({}, 'f5', function()
 end)
 
 application_switch['f6'] = hs.hotkey.bind({}, 'f6', function()
-	hs.application.find('com.apple.iphonesimulator'):activate(activateAllWindows)
+	hs.application.find('com.google.android.studio'):activate(activateAllWindows)
 end)
 
 
