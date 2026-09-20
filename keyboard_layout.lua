@@ -1,4 +1,4 @@
--- Copyright (c) 2021–2025  Teddy Wing
+-- Copyright (c) 2021–2026  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -34,6 +34,11 @@ local function is_kyria(event)
 		and event['productID'] == 40349
 end
 
+local function is_swiffre(event)
+	return event['vendorID'] == 65261
+		and event['productID'] == 53178
+end
+
 local function is_twaddle_choc(event)
 	return event['vendorID'] == 65261
 		and event['productID'] == 7391
@@ -52,6 +57,7 @@ keyboard_usb_watcher = hs.usb.watcher.new(function(event)
 	if not is_imate(event)
 		and not is_keychron(event)
 		and not is_kyria(event)
+		and not is_swiffre(event)
 		and not is_twaddle_choc(event)
 		and not is_generic_keyboard(event)
 	then
