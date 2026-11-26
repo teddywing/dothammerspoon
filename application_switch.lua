@@ -1,4 +1,4 @@
--- Copyright (c) 2019, 2025  Teddy Wing
+-- Copyright (c) 2019, 2025–2026  Teddy Wing
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -38,7 +38,15 @@ application_switch['f4'] = hs.hotkey.bind({}, 'f4', function()
 	elseif ms_remote_desktop then
 		ms_remote_desktop:activate()
 	else
-		hs.application.find('com.apple.iphonesimulator'):activate(activateAllWindows)
+		-- Xcode 27 replaced the "Simulator" app with "Device Hub".
+		local simulator = hs.application.find('com.apple.iphonesimulator')
+		local device_hub = hs.application.find('com.apple.dt.Devices')
+
+		if simulator then
+			simulator:activate()
+		elseif device_hub then
+			device_hub:activate()
+		end
 	end
 end)
 
